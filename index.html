@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>HULK: SMASH CITY | Jogo 3D</title>
+  <meta name="theme-color" content="#0a1210">
+  <link rel="stylesheet" href="src/style.css">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <script type="importmap">
+    {"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.186.1/build/three.module.js"}}
+  </script>
+</head>
+<body>
+  <div id="game" aria-label="Cenário do jogo 3D"></div>
+  <div id="vignette" aria-hidden="true"></div>
+  <div id="damageFlash" aria-hidden="true"></div>
+  <div id="crosshair" aria-hidden="true"><span></span></div>
+
+  <header id="hud" hidden>
+    <div class="hud-left">
+      <div class="logo"><strong>HULK</strong><small>SMASH CITY <span>V1.1</span></small></div>
+      <div class="stat hp"><div class="stat-title"><span>♥ VIDA</span><b id="healthLabel">100%</b></div><div class="meter"><div id="healthFill"></div></div></div>
+      <div class="stat rage"><div class="stat-title"><span>⚡ FÚRIA</span><b id="rageLabel">0%</b></div><div class="meter"><div id="rageFill"></div></div></div>
+    </div>
+    <div class="hud-center"><div id="missionTag">MISSÃO 01 • CAOS URBANO</div><h2 id="missionTitle">DESTRUA A CIDADE</h2><p id="missionProgress">Derrube os prédios e derrote os inimigos.</p><div class="objective-track"><div id="objectiveFill"></div></div></div>
+    <div class="hud-right"><div class="score-label">PONTUAÇÃO</div><div id="score">000000</div><div class="stats-row"><div><small>DESTRUIÇÃO</small><b id="destroyCount">0</b></div><div><small>INIMIGOS</small><b id="enemyCount">0</b></div></div><canvas id="minimap" width="176" height="176" aria-label="Minimapa"></canvas></div>
+  </header>
+
+  <aside id="audioSettings" aria-label="Opções de áudio">
+    <button id="soundToggle" type="button" aria-pressed="true">🔊 SOM: LIGADO</button>
+    <button id="musicToggle" type="button" aria-pressed="true">♫ MÚSICA: LIGADA</button>
+    <label for="volumeSlider">VOLUME</label><input id="volumeSlider" type="range" min="0" max="100" value="75" aria-label="Volume geral">
+  </aside>
+  <div id="toast"></div>
+  <div id="combo" aria-live="polite"></div>
+  <div id="controlsHint" hidden><b>WASD</b> MOVER <b>SHIFT</b> CORRER <b>ESPAÇO</b> SALTAR <b>CLIQUE / F</b> SOCO <b>Q</b> ESMAGAR <b>E</b> ARREMESSAR CARRO <b>R</b> FÚRIA <b>BOTÃO DIREITO</b> CÂMERA <b>ESC</b> PAUSAR</div>
+
+  <main id="menu" class="screen">
+    <div class="menu-atmosphere"></div>
+    <div class="menu-content"><div class="kicker">UM JOGO 3D FEITO COM THREE.JS</div><h1><span>HULK</span><em>SMASH CITY</em></h1><p class="tagline">A cidade é seu campo de batalha.<br>Destrua prédios, esmague tanques e libere toda a sua fúria.</p><div class="menu-actions"><button id="startButton" class="primary">▶ INICIAR DESTRUIÇÃO</button><button id="howButton" class="secondary">⌨ COMO JOGAR</button></div><div class="feature-row"><span>◈ CIDADE DESTRUTÍVEL</span><span>◈ COMBATE 3D</span><span>◈ MISSÕES E INIMIGOS</span></div><div class="small-note">Projeto de fã sem vínculo com a Marvel. Áudio já incluído; Three.js carregado pela internet. Sons CC0 da Kenney podem ser instalados opcionalmente.</div></div>
+  </main>
+
+  <div id="modal" class="screen hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="panel"><div class="kicker" id="modalKicker">CONTROLES</div><h2 id="modalTitle">COMO JOGAR</h2><div id="modalBody" class="modal-body"><div class="how-grid"><div><kbd>W A S D</kbd><span>Mover</span></div><div><kbd>SHIFT</kbd><span>Correr</span></div><div><kbd>ESPAÇO</kbd><span>Super salto</span></div><div><kbd>F / CLIQUE</kbd><span>Socar / atacar</span></div><div><kbd>Q</kbd><span>Onda de choque</span></div><div><kbd>E</kbd><span>Pegar / lançar carro</span></div><div><kbd>R</kbd><span>Ativar fúria</span></div><div><kbd>MOUSE DIREITO</kbd><span>Girar câmera</span></div><div><kbd>ESC / P</kbd><span>Pausar</span></div><div><kbd>M</kbd><span>Silenciar / ativar áudio</span></div></div></div><div class="modal-actions"><button id="resumeButton" class="primary">ENTENDI</button><button id="restartButton" class="secondary hidden">REINICIAR JOGO</button></div></div></div>
+  <div id="fatal" class="screen hidden"><div class="panel"><h2>NÃO FOI POSSÍVEL INICIAR O 3D</h2><p id="fatalText">Verifique sua conexão com a internet e a compatibilidade WebGL do navegador.</p><button class="primary" onclick="location.reload()">TENTAR NOVAMENTE</button></div></div>
+  <script>
+    // User-friendly diagnostic if the CDN import fails before game.js can run.
+    setTimeout(() => {
+      if (window.__HULK_READY) return;
+      const errorScreen = document.getElementById('fatal');
+      const description = document.getElementById('fatalText');
+      description.textContent = 'O jogo não carregou. Verifique sua conexão com a internet (Three.js pelo CDN), o suporte a WebGL e tente atualizar a página.';
+      errorScreen.classList.remove('hidden');
+    }, 12000);
+  </script>
+  <script type="module" src="src/game.js"></script>
+</body>
+</html>

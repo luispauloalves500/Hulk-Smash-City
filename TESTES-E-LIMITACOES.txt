@@ -1,0 +1,14 @@
+VERSAO 1.1 - CHECKLIST DE REVISAO
+- Sintaxe: node --check src/game.js, src/audio.js e server.cjs.
+- Audio: arquivos OGG inspecionados com ffprobe, tamanho e duracao validos.
+- Servidor: checar GET /, /src/game.js, /src/audio.js, /assets/audio/punch.ogg e /assets/audio/music.ogg.
+- Browser: iniciar via clique; confirmar __HULK_READY e __HULK_AUDIO.loaded.
+- Testes de combate e missao exigem navegador com Three.js importado e WebGL ativo.
+
+LIMITACOES
+- CDN do Three.js precisa de internet no PC (biblioteca nao esta embutida).
+- Audio apenas inicia apos clicar para jogar, conforme politica de autoplay.
+- Os sons CC0 externos foram pesquisados, mas nao puderam ser transferidos
+  nesta execucao; o importador opcional permite baixar no proprio Windows.
+- OGGs incluidos sao sintetizados localmente e nao devem ser identificados como Kenney.
+- O visual do personagem e estilizado (nao e modelo 3D licenciado de terceiros).
