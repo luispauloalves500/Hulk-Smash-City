@@ -3,7 +3,7 @@ const http=require('node:http');
 const fs=require('node:fs');
 const path=require('node:path');
 const root=__dirname;
-const mime={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.cjs':'text/javascript; charset=utf-8','.png':'image/png','.ico':'image/x-icon','.ogg':'audio/ogg','.mp3':'audio/mpeg','.json':'application/json; charset=utf-8'};
+const mime={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.cjs':'text/javascript; charset=utf-8','.png':'image/png','.ico':'image/x-icon','.ogg':'audio/ogg','.mp3':'audio/mpeg','.json':'application/json; charset=utf-8'};
 const server=http.createServer((req,res)=>{
   let url;
   try{url=decodeURIComponent(new URL(req.url,'http://127.0.0.1').pathname);}catch{res.writeHead(400);res.end('Bad Request');return;}
@@ -15,4 +15,4 @@ const server=http.createServer((req,res)=>{
   });
 });
 const port=Number(process.env.PORT||8766);
-server.listen(port,'127.0.0.1',()=>console.log('HULK SMASH CITY v1.1: http://127.0.0.1:'+port));
+server.listen(port,'127.0.0.1',()=>console.log('HULK SMASH CITY v1.2: http://127.0.0.1:'+port));

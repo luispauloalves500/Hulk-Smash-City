@@ -1,14 +1,14 @@
-VERSAO 1.1 - CHECKLIST DE REVISAO
-- Sintaxe: node --check src/game.js, src/audio.js e server.cjs.
-- Audio: arquivos OGG inspecionados com ffprobe, tamanho e duracao validos.
-- Servidor: checar GET /, /src/game.js, /src/audio.js, /assets/audio/punch.ogg e /assets/audio/music.ogg.
-- Browser: iniciar via clique; confirmar __HULK_READY e __HULK_AUDIO.loaded.
-- Testes de combate e missao exigem navegador com Three.js importado e WebGL ativo.
+CHECKLIST DO PROJETO - V1.2
+[ ] Browser Windows: carregamento do Three.js e renderizacao WebGL.
+[ ] Joystick ou teclado: movimento, giro, socos alternados, salto, aterrissagem.
+[ ] Impactos: carro arremessado, colisao com tanques, tiros versus edificios.
+[ ] Tres missoes, reiniciar apos derrota e vitoria.
+[ ] Audio apos clicar no botao Iniciar: efeitos, musica, mute e volume.
+[x] Sintaxe dos JavaScripts validada via node --check.
+[x] Testes automatizados do kernel de colisao Node passaram.
+[x] Arquivos OGG e servidor HTTP verificados por ferramentas do ambiente.
 
-LIMITACOES
-- CDN do Three.js precisa de internet no PC (biblioteca nao esta embutida).
-- Audio apenas inicia apos clicar para jogar, conforme politica de autoplay.
-- Os sons CC0 externos foram pesquisados, mas nao puderam ser transferidos
-  nesta execucao; o importador opcional permite baixar no proprio Windows.
-- OGGs incluidos sao sintetizados localmente e nao devem ser identificados como Kenney.
-- O visual do personagem e estilizado (nao e modelo 3D licenciado de terceiros).
+A VALIDAR NO WINDOWS: desempenho GPU, glitches de animação e jogabilidade
+completa. Navegador automatizado deste ambiente bloqueia localhost e CDN.
+O jogo nao usa engine rigid-body; colisao usa volume aproximado e varredura.
+As texturas sao geradas localmente ao iniciar, nao fotogrametria externa.

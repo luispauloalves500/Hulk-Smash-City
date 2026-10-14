@@ -1,58 +1,60 @@
-HULK: SMASH CITY v1.1
-Jogo de fã em Three.js para Windows (projeto open source editável)
+HULK: SMASH CITY v1.2 — ANIMACOES, COLISOES E TEXTURAS
+Jogo 3D de fã em Three.js, projeto editavel, nao oficial.
 
-COMO JOGAR
+EXECUTAR NO WINDOWS
 1. Extraia TODO o ZIP em uma pasta.
-2. Execute JOGAR-WINDOWS.bat. E necessario ter Node.js ou Python.
-3. O navegador abrirá http://127.0.0.1:8766
-4. Clique em INICIAR DESTRUICAO. Esse clique libera o audio (exigencia dos navegadores).
-
-Three.js carrega de CDN e precisa de conexao com a internet. Os arquivos de audio
-musica.ogg/ambience.ogg/SFX estao DENTRO do ZIP e funcionam sem download adicional.
-Nao tente executar index.html diretamente como arquivo local, pois pode falhar o import de modulos.
+2. Execute JOGAR-WINDOWS.bat. Requer Node.js ou Python instalado.
+3. Acesse http://127.0.0.1:8766 e clique INICIAR DESTRUICAO.
+4. E necessaria conexao com internet para carregar Three.js da CDN.
+   Texturas procedurais e audios OGG ja estao incluidos no codigo/pacote.
+   Nao abra index.html como arquivo local sem servidor (modulos ES).
 
 CONTROLES
-WASD/SETAS - andar; SHIFT - correr; ESPACO - saltar
-CLIQuE ESQUERDO ou F - socar; Q - golpe sismico; E - erguer/lancar carro
-R - furia ao atingir 85%; BOTAO DIREITO arrastar - camera; RODA - zoom
-ESC/P - pausa; M - mutar/desmutar
-Botoes SOM, MUSICA e slider VOLUME ficam no canto inferior direito.
+WASD / SETAS  - mover; SHIFT - correr; ESPACO - saltar
+F / CLIQUE ESQ - alternar socos; Q - ataque sismico
+E - pegar/lancar carro; R - ativar furia com 85%
+MOUSE DIR + arrastar - camera; RODA - zoom
+ESC/P - pausar; M - ativar/desativar som
+Botoes de som, musica e volume no canto inferior direito.
 
-SISTEMAS NOVOS DA V1.1
-- OGG reais EMBUTIDOS (nao dependem da internet): 15 efeitos, 1 musica, 1 ambiente.
-- Mixer WebAudio separado: efeitos, musica, ambiente, volume, mute, pausa.
-- Predios ganham rachaduras visiveis em 75/50/25% de integridade e caem com poeira.
-- Tanques/drones surgem nas ruas e evitam atravessar construcoes com desvio simples.
-- Projeteis inimigos batem nos predios; carros arremessados podem destruir outros carros.
-- Destrocos usam materiais compartilhados; resolucao adapta em taxas de quadros baixas.
-- Corrigido flash de dano invisivel e efeito compartilhado entre inimigos.
+MELHORIAS NA V1.2
+- Articulacao independente de antebracos e joelhos, alternancia de socos,
+  torcao de tronco, animacao de corrida, impulso aereo e recepcao na aterrissagem.
+- Movimento com aceleracao/desaceleracao, colisao varrida e deslizamento
+  contra edificios, veiculos e tanques; limites do mapa seguros.
+- Colisao de trajetoria (segmento) para tiros inimigos e carros arremessados;
+  tiros bloqueados por edificios e veiculos.
+- Trafego evita objetos a frente, tenta frear/inverter e pode ferir Hulk.
+- Texturas PROCEDURAIS locais de asfalto, concreto, grama, pele e roupa,
+  com bump mapping, sem downloads de texturas na execucao.
+- Melhorias de iluminacao, sombras suaves, ceu em gradiente, detalhes
+  arquitetonicos, faixas de pedestre e carroceria com detalhes extras.
+- Mantidos 17 audios OGG, 3 missoes, inimigos, sistema de furia e explosoes.
+- Kernel de colisoes isolado em src/physics.mjs; teste node tests/physics.test.mjs.
 
-ASSETS GRATUITOS PESQUISADOS
-Kenney Impact Sounds (130 sons, CC0): https://kenney.nl/assets/impact-sounds
-Kenney Sci-fi Sounds (70 sons, CC0): https://kenney.nl/assets/sci-fi-sounds
-Kenney UI Audio (50 sons, CC0): https://kenney.nl/assets/ui-audio
-Kenney City Kit Commercial (predios 3D, CC0): https://kenney.nl/assets/city-kit-commercial
-Kenney City Kit Suburban (casas 3D, CC0): https://kenney.nl/assets/city-kit-suburban
-Licenca e perguntas frequentes: https://kenney.nl/support
+ARQUIVOS IMPORTANTES
+src/game.js          Cena, personagem, armas, missao, renderizacao.
+src/physics.mjs      Colisoes 2D/3D, varredura e deslizamento.
+src/surfaces.js      Texturas locais criadas usando CanvasTexture.
+src/audio.js         Mixer WebAudio ja incluido na v1.1.
+assets/audio/        Audios OGG locais e instalacao Kenney opcional.
+tests/physics.test.mjs  Testes de colisao Node.js.
 
-INSTALAR AUDIO CC0 (OPCIONAL, INTERNET NECESSARIA UMA VEZ)
-Execute INSTALAR-AUDIO-KENNEY.bat. O script PowerShell baixa dois pacotes CC0
-DO SITE OFICIAL Kenney, seleciona arquivos compativeis e ativa alguns efeitos.
-O script nao e executado pelo jogo automaticamente e as trilhas originais sempre
-permanecem como fallback. Se a rede estiver indisponivel, use o audio incluso.
+ASSETS EXTERNOS CC0 PESQUISADOS (NAO INCLUIDOS NO ZIP)
+Kenney City Kit Roads (90 modelos glTF/OBJ/FBX, CC0):
+https://kenney.nl/assets/city-kit-roads
+Poly Haven (texturas PBR, CC0):
+https://polyhaven.com/license
+Kenney Impact Sounds / Sci-Fi Sounds (CC0):
+https://kenney.nl/assets/impact-sounds
+https://kenney.nl/assets/sci-fi-sounds
+Use INSTALAR-AUDIO-KENNEY.bat apenas se desejar baixar audios extras.
+Esta versao NAO embute modelos/texturas da Kenney nem da Poly Haven.
 
-CREDITOS E DIREITOS
-- Programacao/geracao de geometria: prototipo original.
-- Audio incluso: gerado para este projeto (nao retirado de pack externo).
-- Importacoes Kenney: CC0 1.0; credito opcional recomendado: Kenney.nl.
-- Hulk e uma marca/personagem da Marvel; jogo NAO OFICIAL de fã sem afiliacao.
-- Three.js: https://threejs.org (MIT License).
-
-LIMITE REAL: destruição baseada em animacao e particulas, nao fisica rigid-body
-realista; navegacao de inimigos utiliza desvio heuristico, nao malha de navegacao.
-
-Os kits City Kit sao recomendados para uma versao futura com modelos glTF;
-na v1.1 a cidade permanece procedural e os modelos externos NAO estao incluidos.
-
-Para recriar os OGG sintetizados: python tools/gerar_audio.py
-(depende de numpy, scipy e ffmpeg; os arquivos OGG ja estao prontos no jogo).
+LIMITES HONESTOS
+- Animacao procedural por hierarquia de grupos; nao e captura de movimento.
+- Colisao e fisica simplificadas: caixas/circulos com varredura, nao rigid-body.
+- Sem fisica real de desmoronamento ou navegacao com malha navmesh.
+- Browser WebGL e import Three.js exigem teste em PC real.
+- Hulk pertence a Marvel; projeto nao oficial, sem afiliacao.
+- Three.js MIT. Audios do pacote gerados para este projeto.
