@@ -1,60 +1,70 @@
-HULK: SMASH CITY v1.2 — ANIMACOES, COLISOES E TEXTURAS
-Jogo 3D de fã em Three.js, projeto editavel, nao oficial.
+HULK: SMASH CITY v1.4 — SUPER PULO, ESCALADA E PALMADA TROVÃO
+Projeto de fã em Three.js, de código-fonte editável; não oficial nem afiliado à Marvel.
 
-EXECUTAR NO WINDOWS
-1. Extraia TODO o ZIP em uma pasta.
-2. Execute JOGAR-WINDOWS.bat. Requer Node.js ou Python instalado.
-3. Acesse http://127.0.0.1:8766 e clique INICIAR DESTRUICAO.
-4. E necessaria conexao com internet para carregar Three.js da CDN.
-   Texturas procedurais e audios OGG ja estao incluidos no codigo/pacote.
-   Nao abra index.html como arquivo local sem servidor (modulos ES).
+COMO JOGAR NO WINDOWS
+1. Extraia TODOS os arquivos do ZIP.
+2. Abra JOGAR-WINDOWS.bat com Node.js ou Python instalado.
+3. Abra o endereço informado pelo inicializador (normalmente http://127.0.0.1:8766).
+4. Clique em INICIAR DESTRUIÇÃO. A conexão com a internet é necessária para carregar o Three.js pela CDN.
 
-CONTROLES
-WASD / SETAS  - mover; SHIFT - correr; ESPACO - saltar
-F / CLIQUE ESQ - alternar socos; Q - ataque sismico
-E - pegar/lancar carro; R - ativar furia com 85%
-MOUSE DIR + arrastar - camera; RODA - zoom
-ESC/P - pausar; M - ativar/desativar som
-Botoes de som, musica e volume no canto inferior direito.
+PODERES NOVOS NA V1.4
+ESPAÇO (segurar) - aumenta o carregamento de 0 a 100% em ~1,65 segundo;
+                   SOLTAR dispara o salto na força correspondente. Toque curto = salto normal.
+C (segurar)      - gruda na fachada próxima de um prédio ainda intacto.
+C + W / S        - escala para cima / desce pela parede.
+C + A / D        - caminha lateralmente pela fachada.
+ESPAÇO escalando - salta para longe da parede; no alto o Hulk sobe ao telhado.
+X                - PALMADA TROVÃO (ataque frontal de área com recarga).
+Q no solo        - ESMAGAMENTO SÍSMICO (ataque radial com recarga).
+Q no ar          - MERGULHO DE IMPACTO: cai rapidamente e ataca ao tocar o solo/telhado.
 
-MELHORIAS NA V1.2
-- Articulacao independente de antebracos e joelhos, alternancia de socos,
-  torcao de tronco, animacao de corrida, impulso aereo e recepcao na aterrissagem.
-- Movimento com aceleracao/desaceleracao, colisao varrida e deslizamento
-  contra edificios, veiculos e tanques; limites do mapa seguros.
-- Colisao de trajetoria (segmento) para tiros inimigos e carros arremessados;
-  tiros bloqueados por edificios e veiculos.
-- Trafego evita objetos a frente, tenta frear/inverter e pode ferir Hulk.
-- Texturas PROCEDURAIS locais de asfalto, concreto, grama, pele e roupa,
-  com bump mapping, sem downloads de texturas na execucao.
-- Melhorias de iluminacao, sombras suaves, ceu em gradiente, detalhes
-  arquitetonicos, faixas de pedestre e carroceria com detalhes extras.
-- Mantidos 17 audios OGG, 3 missoes, inimigos, sistema de furia e explosoes.
-- Kernel de colisoes isolado em src/physics.mjs; teste node tests/physics.test.mjs.
+OUTROS CONTROLES PRESERVADOS
+WASD / SETAS     - mover              SHIFT - correr
+F / CLIQUE       - socos              E     - pegar / lançar carros
+R                - fúria com 85%      M     - silenciar áudio
+BOTÃO DIREITO    - girar câmera       RODA  - zoom
+P / ESC          - pausar
+
+ALTERAÇÕES REAIS NA V1.4
+- Super salto novo, com carregamento e curva de força configuráveis em src/powers.mjs.
+- Barra do super salto no HUD, estados de recarga de Q e X e aviso de escalada.
+- Fachadas de prédios são identificadas por face; escalada com movimento lateral, subida,
+  descida, transição ao telhado e salto de parede com impulso de afastamento.
+- Colisão por altura: quando Hulk está acima de um telhado, ele não permanece bloqueado
+  pelas paredes daquele edifício. Queda varrida para detectar a aterrissagem em telhados
+  sem atravessá-los de cima para baixo.
+- Palmada de choque cônica/frontal: dano a edifícios, carros e inimigos e dissipação de
+  projéteis próximos à frente do Hulk. Animação própria, efeitos luminosos e som local.
+- Q no ar ativa queda acelerada; impacto só explode depois da aterrissagem.
+- Pausar limpa o carregamento e impede que o salto fique preso no teclado.
+- As ondas de choque podem ser renderizadas na altura de um telhado.
+- Preservados todos os 17 OGG locais, o sistema de áudio, 3 missões, carros,
+  inimigos, fúria, gráficos, texturas, destroços e colisões anteriores.
 
 ARQUIVOS IMPORTANTES
-src/game.js          Cena, personagem, armas, missao, renderizacao.
-src/physics.mjs      Colisoes 2D/3D, varredura e deslizamento.
-src/surfaces.js      Texturas locais criadas usando CanvasTexture.
-src/audio.js         Mixer WebAudio ja incluido na v1.1.
-assets/audio/        Audios OGG locais e instalacao Kenney opcional.
-tests/physics.test.mjs  Testes de colisao Node.js.
+src/game.js             Cena e loop principal, poderes, HUD, combate e colisões.
+src/powers.mjs          Regras puras de carregamento, escalada, telhado e palmada.
+src/physics.mjs         Colisões varridas anteriores.
+src/structural.mjs      Destruição estrutural anterior.
+src/audio.js            Sistema de áudio local.
+assets/audio/*.ogg      17 sons locais.
+tests/powers.test.mjs   20 casos de testes lógicos dos novos poderes.
+tests/physics.test.mjs  12 testes de colisões.
+tests/structural.test.mjs  Testes estruturais e de performance simulada.
 
-ASSETS EXTERNOS CC0 PESQUISADOS (NAO INCLUIDOS NO ZIP)
-Kenney City Kit Roads (90 modelos glTF/OBJ/FBX, CC0):
-https://kenney.nl/assets/city-kit-roads
-Poly Haven (texturas PBR, CC0):
-https://polyhaven.com/license
-Kenney Impact Sounds / Sci-Fi Sounds (CC0):
-https://kenney.nl/assets/impact-sounds
-https://kenney.nl/assets/sci-fi-sounds
-Use INSTALAR-AUDIO-KENNEY.bat apenas se desejar baixar audios extras.
-Esta versao NAO embute modelos/texturas da Kenney nem da Poly Haven.
+TESTES (COM NODE.JS)
+node tests/powers.test.mjs
+node tests/physics.test.mjs
+node tests/structural.test.mjs
 
-LIMITES HONESTOS
-- Animacao procedural por hierarquia de grupos; nao e captura de movimento.
-- Colisao e fisica simplificadas: caixas/circulos com varredura, nao rigid-body.
-- Sem fisica real de desmoronamento ou navegacao com malha navmesh.
-- Browser WebGL e import Three.js exigem teste em PC real.
-- Hulk pertence a Marvel; projeto nao oficial, sem afiliacao.
-- Three.js MIT. Audios do pacote gerados para este projeto.
+LIMITAÇÕES
+- Simulação de colisões aproximada, sem um motor externo de física de corpos rígidos.
+- Escalada de paredes axiais de edifícios intactos; não há escalada dos destroços.
+- Personagem é um modelo 3D procedural, ainda sem esqueleto rigged de animação importado.
+- Não foi possível completar a validação WebGL via navegador automatizado neste ambiente;
+  para validar renderização e jogo inteiro, executar no Chrome/Edge Windows.
+- Three.js 0.186.1 ainda usa CDN. Áudio integrado funciona localmente.
+
+DIAGNÓSTICO
+Abra o console (F12) e use window.__HULK_DIAGNOSTICS() para ver dados gerais,
+incluindo carregamento de salto, escalada, mergulho e cooldown de palmada.

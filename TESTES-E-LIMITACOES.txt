@@ -1,14 +1,15 @@
-CHECKLIST DO PROJETO - V1.2
-[ ] Browser Windows: carregamento do Three.js e renderizacao WebGL.
-[ ] Joystick ou teclado: movimento, giro, socos alternados, salto, aterrissagem.
-[ ] Impactos: carro arremessado, colisao com tanques, tiros versus edificios.
-[ ] Tres missoes, reiniciar apos derrota e vitoria.
-[ ] Audio apos clicar no botao Iniciar: efeitos, musica, mute e volume.
-[x] Sintaxe dos JavaScripts validada via node --check.
-[x] Testes automatizados do kernel de colisao Node passaram.
-[x] Arquivos OGG e servidor HTTP verificados por ferramentas do ambiente.
+CHECKLIST V1.4 — RESULTADOS REPRODUZÍVEIS
+[ok] node --check src/game.js e todos os módulos JS/CJS/MJS.
+[ok] tests/powers.test.mjs: 20 casos de superpulo, fachada, telhado e cone da palmada.
+[ok] tests/physics.test.mjs: 12 verificações anteriores.
+[ok] tests/structural.test.mjs: divisão, gravidade, volumes, 104 fragmentos/600 passos.
+[ok] HTTP 200 em index.html e src/powers.mjs no servidor local Node.
+[ok] Preservação dos 17 arquivos OGG anteriores.
+[ ] Navegador automatizado WebGL: acesso ao endereço local bloqueado
+     (net::ERR_BLOCKED_BY_ADMINISTRATOR), portanto não foi possível iniciar a cena.
+[ ] Validar visualmente no Windows escalação, telhados, impacto, animações e HUD.
+[ ] Jogar todas as três missões, inclusive derrota, vitória e reinício.
+[ ] Testar FPS por períodos longos em PCs com GPUs diferentes.
 
-A VALIDAR NO WINDOWS: desempenho GPU, glitches de animação e jogabilidade
-completa. Navegador automatizado deste ambiente bloqueia localhost e CDN.
-O jogo nao usa engine rigid-body; colisao usa volume aproximado e varredura.
-As texturas sao geradas localmente ao iniciar, nao fotogrametria externa.
+Não declarar como aprovados itens pendentes de teste jogável. As colisões
+são simplificadas; a escalada é lógica por face, não malha física contínua.

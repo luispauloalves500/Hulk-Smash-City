@@ -11,3 +11,10 @@
 #audioSettings{position:fixed;z-index:5;bottom:64px;right:18px;display:flex;align-items:center;gap:8px;background:rgba(5,22,18,.79);border:1px solid #9abf6c44;border-radius:6px;padding:7px 10px;font-size:11px;color:#e3f5d3;backdrop-filter:blur(8px)}
 #audioSettings button{border:1px solid #83a25b66;background:#16312ac9;color:#daedbe;cursor:pointer;font:700 11px 'Rajdhani',Arial,sans-serif;letter-spacing:.3px;padding:7px 9px;border-radius:3px}#audioSettings button:hover{background:#2f5b3c}#audioSettings label{font-size:10px;font-weight:700;color:#abca9f;letter-spacing:.5px}#audioSettings input[type=range]{width:75px;height:14px;accent-color:#a7ed4e;cursor:pointer}
 @media(max-width:780px){#audioSettings{bottom:53px;right:8px;gap:4px;padding:5px}#audioSettings button{font-size:9px;padding:4px}#audioSettings label{display:none}#audioSettings input[type=range]{width:54px}}
+
+/* v1.4: in-game power meter and dedicated cooldown feedback */
+.charge .meter div{width:0;background:linear-gradient(90deg,#b4dd53 0%,#f4f59c 70%,#ffffff 100%);transition:width .08s}
+.charge .stat-title b{color:#dcfa89}
+.power-status{display:flex;flex-direction:column;gap:3px;margin-top:9px;font:800 11px/1.3 'Rajdhani',sans-serif;letter-spacing:1px;color:#d4efb3;text-shadow:0 1px 3px #0016}
+#clapStatus,#slamStatus{padding:3px 5px;background:rgba(8,24,19,.58);border-left:2px solid #91c452}
+@media(max-width:780px){.power-status{font-size:9px;letter-spacing:0;padding:0}.charge .stat-title b{font-size:10px}}
